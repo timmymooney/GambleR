@@ -1,12 +1,11 @@
 Package: gambleR
-Title: What the Package Does (One Line, Title Case)
+Title: A very limited virtual-casino.
 Version: 0.0.0.9000
 Authors@R: 
     person("Timothy", "Mooney", , "tim.mooney@sharecreative.com", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: A small package to simulate a select number of functions that occur within a Casino; Rolling a Dice, Dealing and Shuffling a deck of cards as well as a virtual slot machine.
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Description: A small package to simulate a select number of functions that occur within a Casino such as; Rolling a Dice, Dealing and Shuffling a deck of cards as well as a virtual slot machine.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
