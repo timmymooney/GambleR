@@ -1,6 +1,5 @@
 #' Test your luck on the gambleR slot machine
-#'
-#' @return The slot machine's wheel will be spun, producing a combination of three symbols as well as the amount won in $ (with any luck). The result of the spin will be printed in the console.
+#' @return The slot machine's wheel will be spun, producing a combination of three symbols as well as the amount won in £ (with any luck). The result of the spin will be printed in the console.
 #' @export
 #'
 #' @examples
@@ -32,6 +31,6 @@ slot_machine <- function() {
   }
   symbols <- attr(prize, "symbols")
   symbols <- paste(symbols, collapse = " ")
-  string <- paste(symbols, prize, sep = "\n$")
+  string <- paste(symbols, prize, sep = "\n£")
   cat(string)
 }
