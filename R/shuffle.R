@@ -7,6 +7,7 @@
 #' @examples
 #' cards_df <- shuffle(cards = cards_df)
 #' shuffle(cards = cards_df)
+
 shuffle <- function(cards) {
   random <- sample(1:52, size = 52)
   cards[random, ]

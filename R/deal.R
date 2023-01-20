@@ -7,6 +7,7 @@
 #' @examples
 #' top_card <- deal(cards = cards_df)
 #' deal(cards = cards_df)
+
 deal <- function(cards) {
   cards[1, ]
 }

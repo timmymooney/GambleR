@@ -5,6 +5,7 @@
 #' @examples
 #' result <- slot_machine()
 #' slot_machine()
+
 slot_machine <- function() {
   wheel <- c("DD", "7", "BBB", "BB", "B", "C", "0")
   symbols <- sample(wheel, size = 3, replace = TRUE,

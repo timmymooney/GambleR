@@ -5,6 +5,7 @@
 #' @examples
 #' score <- roll()
 #' roll()
+
 roll <- function() {
   die <- 1:6
   names(die) <- c("one", "two", "three", "four", "five", "six")
