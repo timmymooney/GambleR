@@ -7,7 +7,7 @@
 slot_machine()
 }
 \value{
-The slot machine's wheel will be spun, producing a combination of three symbols as well as the amount won in $ (with any luck). The result of the spin will be printed in the console.
+The slot machine's wheel will be spun, producing a combination of three symbols as well as the amount won in £ (with any luck). The result of the spin will be printed in the console.
 }
 \description{
 Test your luck on the gambleR slot machine
