@@ -7,9 +7,9 @@
 roulette(prediction = prediction, bet = bet)
 }
 \arguments{
-\item{Prediction}{A string stating which colour one predicts the ball will land on. The colours are Red, Black or Green. The odds that the ball will land on Red or Black are 2/1 but the odds for Green are 35/1.}
+\item{prediction}{A string stating which colour one predicts the ball will land on. The colours are "Red", "Black" or "Green|". The odds that the ball will land on Red or Black are 2/1 but the odds for Green are 35/1.}
 
-\item{Bet}{Any positive number, stating how much you wish to bet on your prediction.}
+\item{bet}{Any positive number, stating how much you wish to bet on your prediction.}
 }
 \value{
 Spin the wheel and try your luck at guessing what colour the virtual ball will land on. Depending if your prediction is correct, the function will output the outcome, along with a prize based on the bet you placed. If your prediction is wrong, no prize is won, but don't be disheartened, just double down and spin again, right?
