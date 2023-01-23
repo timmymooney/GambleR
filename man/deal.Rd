@@ -13,7 +13,7 @@ deal(cards = cards_df)
 The top card in the deck will be dealt, providing the face, suite and value of the card.
 }
 \description{
-Deal the top card from a deck
+A function that will deal the top card from the deck or cards dataframe.
 }
 \examples{
 top_card <- deal(cards = cards_df)

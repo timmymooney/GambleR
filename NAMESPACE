@@ -2,5 +2,6 @@
 
 export(deal)
 export(roll)
+export(roulette)
 export(shuffle)
 export(slot_machine)
