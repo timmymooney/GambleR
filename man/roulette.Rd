@@ -9,7 +9,7 @@ roulette(prediction = prediction, bet = bet)
 \arguments{
 \item{prediction}{A string stating which colour the gambler wishes to place their stake on. The colours are "Red", "Black" or "Green". The odds that the ball will land on "Red" or "Black" are 2/1, and the odds for "Green" are 35/1.}
 
-\item{bet}{Any positive number, stating how much the gambler would like to bet on their prediction.}
+\item{bet}{Any positive number, stating how much the gambler would like to bet on their prediction - the default is GBP(£) but no further information is required, other than the positive number.}
 }
 \value{
 The function will return the result of the spin, stating which colour the ball has landed on as well as any prize won, if any.
