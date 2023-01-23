@@ -1,6 +1,9 @@
 #' Roll a pair of dice
+#'
 #' @description A function that simulates the rolling of a pair of dice (or die).
+#'
 #' @return A random score between 2 - 12, calculated by adding the score of two virtual dice together.
+#'
 #' @export
 #'
 #' @examples

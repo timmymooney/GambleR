@@ -13,7 +13,7 @@ shuffle(cards = cards_df)
 The deck of cards will be randomly re-shuffled.
 }
 \description{
-Re-shuffle a deck of cards randomly and fairly
+A function which will randomly re-order the cards dataframe, an object that can be provided to other functions such as \code{gambleR::deal()}.
 }
 \examples{
 cards_df <- shuffle(cards = cards_df)
