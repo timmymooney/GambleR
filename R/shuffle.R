@@ -8,7 +8,7 @@
 #' cards_df <- shuffle(cards = cards_df)
 #' shuffle(cards = cards_df)
 
-shuffle <- function(cards) {
+shuffle <- function(cards = cards_df) {
   random <- sample(1:52, size = 52)
   cards[random, ]
 }

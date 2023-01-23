@@ -1,10 +1,15 @@
 #' Spin the wheel at gambleR's roulette table
-#' @param prediction A string stating which colour one predicts the ball will land on. The colours are Red, Black or Green. The odds that the ball will land on Red or Black are 2/1 but the odds for Green are 35/1.
-#' @param bet Any positive number, stating how much you wish to bet on your prediction.
 #'
-#' @return Spin the wheel and try your luck at guessing what colour the virtual ball will land on. Depending if your prediction is correct, the function will output the outcome, along with a prize based on the bet you placed. If your prediction is wrong, no prize is won, but don't be disheartened, just double down and spin again, right?
+#'@description Spin the wheel and try your luck at guessing what colour the virtual ball will land on. This function resembles a very basic roulette table, a very fun way to gamble away any spare funds.
+#'
+#' @param prediction A string stating which colour the gambler wishes to place their stake on. The colours are "Red", "Black" or "Green". The odds that the ball will land on "Red" or "Black" are 2/1, and the odds for "Green" are 35/1.
+#' @param bet Any positive number, stating how much the gambler would like to bet on their prediction - the default is GBP(£) but no further information is required, other than the positive number.
+#'
+#' @return The function will return the result of the spin, stating which colour the ball has landed on as well as any prize won, if any.
+#'
 #' @examples
 #' result <- roulette(prediction, "Red", bet = 10)
+#'
 #' roulette(prediction = "Black", bet = 10)
 
 roulette <- function(prediction = prediction, bet = bet) {
