@@ -4,7 +4,7 @@
 \alias{deal}
 \title{Deal the top card from a deck}
 \usage{
-deal(cards)
+deal(cards = cards_df)
 }
 \arguments{
 \item{cards}{A two dimensional object with 52 rows and three columns, including all data within a deck of cards;faces, suits and values of each of the 52 cards in a typical deck.}
