@@ -7,7 +7,7 @@
 roulette(prediction = prediction, bet = bet)
 }
 \arguments{
-\item{prediction}{A string stating which colour the gambler wishes to place their stake on. The colours are "Red", "Black" or "Green|". The odds that the ball will land on "Red" or "Black" are 2/1, and the odds for "Green" are 35/1.}
+\item{prediction}{A string stating which colour the gambler wishes to place their stake on. The colours are "Red", "Black" or "Green". The odds that the ball will land on "Red" or "Black" are 2/1, and the odds for "Green" are 35/1.}
 
 \item{bet}{Any positive number, stating how much the gambler would like to bet on their prediction.}
 }
