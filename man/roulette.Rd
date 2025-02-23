@@ -2,23 +2,31 @@
 % Please edit documentation in R/roulette.R
 \name{roulette}
 \alias{roulette}
-\title{Spin the wheel at gambleR's roulette table}
+\title{Spin the wheel at GambleR's roulette table}
 \usage{
-roulette(prediction = prediction, bet = bet)
+roulette(prediction = "Black", bet = 10, roulette_type = "European")
 }
 \arguments{
-\item{prediction}{A string stating which colour the gambler wishes to place their stake on. The colours are "Red", "Black" or "Green". The odds that the ball will land on "Red" or "Black" are 2/1, and the odds for "Green" are 35/1.}
+\item{prediction}{A string stating which colour you wish to bet on. Choose from "Red", "Black", or "Green". Red and Black offer even-money odds (2:1), while Green pays out big at 35:1 (European) or 38:2 (American) because, well, it’s called \emph{gambling} for a reason.}
 
-\item{bet}{Any positive number, stating how much the gambler would like to bet on their prediction - the default is GBP(£) but no further information is required, other than the positive number.}
+\item{bet}{A positive number representing how much you’re willing to risk in imaginary casino currency. The default currency is GBP(£) when playing on a European table, but if you're playing on an \code{American} table, it'll be in USD($).}
+
+\item{roulette_type}{The type of roulette table you want to play on. The default is \code{European}, where there's only one Green zero. Feeling less-bold? Play the \code{American} table for more favourable odds on Green!}
 }
 \value{
-The function will return the result of the spin, stating which colour the ball has landed on as well as any prize won, if any.
+The function returns the result of the spin, announcing where the ball landed and whether you won big, won small, or should probably rethink your life choices.
 }
 \description{
-Spin the wheel and try your luck at guessing what colour the virtual ball will land on. This function resembles a very basic roulette table, a very fun way to gamble away any spare funds.
+Step right up and test your luck at the GambleR roulette table! Will you walk away a legend, or will the house (which always wins) claim yet another victim? This function lets you place a simple bet on Red, Black, or Green—without the risk of re-mortgaging your house, putting it all on Black, and explaining your life choices to your now ex-spouse.
 }
 \examples{
-result <- roulette(prediction, "Red", bet = 10)
+# A cautious gambler playing it safe:
+result <- roulette(prediction = "Black",
+                   bet = 10,
+                   roulette_type = "European")
 
-roulette(prediction = "Black", bet = 10)
+# Going for the big Green payout:
+roulette(prediction = "Green",
+         bet = 100,
+         roulette_type = "American")
 }
