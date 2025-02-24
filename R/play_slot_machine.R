@@ -1,6 +1,6 @@
 #' Test your luck on the gambleR slot machine
 #'
-#' @description A function which requires no arguments, simulating the playing of a slot machine. The wheel is spun and three symbols are produced, along with any prize won. Prizes are won based on the result of the random spin. Three DD's is worth £100, three 7's are worth £80 and so on.. for more on scoring and prizes. Refer to https://rstudio-education.github.io/hopr/programs.html
+#' @description A function which requires no arguments, simulating the playing of a slot machine. The wheel is spun and three symbols are produced, along with any prize won. Prizes are won based on the result of the random spin. Three DD's is worth £100, three 7's are worth £80 and so on. For more on scoring and prizes. Refer to https://rstudio-education.github.io/hopr/programs.html
 #'
 #' @return The slot machine's wheel will be spun, producing a combination of three symbols as well as the amount won in £ (with any luck). The result of the spin will be printed in the console.
 #'
@@ -9,8 +9,8 @@
 #' @examples
 #' result <- slot_machine()
 #' slot_machine()
+play_slot_machine <- function() {
 
-slot_machine <- function() {
   wheel <- c("DD", "7", "BBB", "BB", "B", "C", "0")
   symbols <- sample(wheel, size = 3, replace = TRUE,
                     prob = c(0.03, 0.03, 0.06, 0.1, 0.25, 0.01, 0.52))
