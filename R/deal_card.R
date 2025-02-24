@@ -9,9 +9,9 @@
 #' @export
 #'
 #' @examples
-#' top_card <- deal(cards = cards_df)
-#' deal(cards = cards_df)
-
-deal <- function(cards = cards_df) {
+#' dealt_cards <- deal_card(cards = cards_df)
+#'
+#' deal_card(cards = cards_df)
+deal_card <- function(cards = cards_df) {
   cards[1, ]
 }

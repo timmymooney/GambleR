@@ -22,8 +22,7 @@
 #' roulette(prediction = "Green",
 #'          bet = 100,
 #'          roulette_type = "American")
-
-roulette <- function(prediction = "Black",
+play_roulette <- function(prediction = "Black",
                      bet = 10,
                      roulette_type = "European") {
 
@@ -77,5 +76,4 @@ roulette <- function(prediction = "Black",
   } else {
     cat("Oof.. unlucky, try again? 👀")
   }
-
 }
