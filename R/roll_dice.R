@@ -10,10 +10,10 @@
 #'
 #' @examples
 #' # Roll a single die
-#' roll_dice()
+#' GambleR::roll_dice()
 #'
 #' # Roll two dice (classic style)
-#' roll_dice(2)
+#' GambleR::roll_dice(number_of_die = 2)
 roll_dice <- function(number_of_die = 1) {
 
   # Ensure input is a whole number and positive

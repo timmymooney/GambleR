@@ -19,8 +19,8 @@ The shuffled deck object can then be used in other functions such as \code{Gambl
 }
 \examples{
 # Shuffle a fresh deck
-shuffled_deck <- shuffle_cards()
+shuffled_deck <- GambleR::shuffle_cards()
 
 # Shuffle an existing deck
-shuffled_deck <- shuffle_cards(cards = deck_of_cards)
+shuffled_deck <- GambleR::shuffle_cards(cards = deck_of_cards)
 }
