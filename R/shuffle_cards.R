@@ -20,19 +20,8 @@ shuffle_cards <- function(cards = NULL) {
 
   # if no deck is provided, generate a standard 52-card deck
   if (is.null(cards)) {
-    # define the card faces and royal cards
-    faces <- c("Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King")
-    suits <- c("♥Hearts", "♦Diamonds", "♣Clubs", "♠Spades")
-
-    # expand the deck using faces and suits
-    cards <- expand.grid(face = faces, suit = suits, stringsAsFactors = FALSE)
-
-    # assign appropriate values
-    cards$card_value <- dplyr::case_when(
-      cards$face %in% c("Jack", "Queen", "King") ~ 10,
-      cards$face == "Ace" ~ 1,
-      TRUE ~ as.numeric(cards$face) # only convert numeric faces
-    )
+    # load the previously saved deck of cards data-frame
+    cards <- GambleR::deck_of_cards
   }
 
   # check if the input deck is valid
