@@ -12,10 +12,10 @@
 #'
 #' @examples
 #' # Shuffle a fresh deck
-#' shuffled_deck <- shuffle_cards()
+#' shuffled_deck <- GambleR::shuffle_cards()
 #'
 #' # Shuffle an existing deck
-#' shuffled_deck <- shuffle_cards(cards = deck_of_cards)
+#' shuffled_deck <- GambleR::shuffle_cards(cards = deck_of_cards)
 shuffle_cards <- function(cards = NULL) {
 
   # if no deck is provided, generate a standard 52-card deck

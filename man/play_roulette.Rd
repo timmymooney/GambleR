@@ -21,12 +21,12 @@ Step right up and test your luck at the GambleR roulette table! Will you walk aw
 }
 \examples{
 # A cautious gambler playing it safe:
-roulette(prediction = "Black",
-                   bet = 10,
-                   roulette_type = "European")
+GambleR::roulette(prediction = "Black",
+                  bet = 10,
+                  roulette_type = "European")
 
 # Going for the big Green payout:
-roulette(prediction = "Green",
-         bet = 100,
-         roulette_type = "American")
+GambleR::roulette(prediction = "Green",
+                  bet = 100,
+                  roulette_type = "American")
 }

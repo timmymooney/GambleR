@@ -17,8 +17,8 @@ Simulates rolling one or more dice. Will you roll a lucky seven, or just a handf
 }
 \examples{
 # Roll a single die
-roll_dice()
+GambleR::roll_dice()
 
 # Roll two dice (classic style)
-roll_dice(2)
+GambleR::roll_dice(number_of_die = 2)
 }

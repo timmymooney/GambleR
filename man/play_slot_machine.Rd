@@ -2,7 +2,7 @@
 % Please edit documentation in R/play_slot_machine.R
 \name{play_slot_machine}
 \alias{play_slot_machine}
-\title{Test your luck on the gambleR slot machine}
+\title{Test your luck on GambleR's slot machine}
 \usage{
 play_slot_machine()
 }
@@ -13,6 +13,6 @@ The slot machine's wheel will be spun, producing a combination of three symbols 
 A function which requires no arguments, simulating the playing of a slot machine. The wheel is spun and three symbols are produced, along with any prize won. Prizes are won based on the result of the random spin. Three DD's is worth £100, three 7's are worth £80 and so on. For more on scoring and prizes. Refer to https://rstudio-education.github.io/hopr/programs.html
 }
 \examples{
-result <- slot_machine()
-slot_machine()
+result <- GambleR::slot_machine()
+GambleR::slot_machine()
 }

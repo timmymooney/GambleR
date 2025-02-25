@@ -2,21 +2,34 @@
 % Please edit documentation in R/deal_card.R
 \name{deal_card}
 \alias{deal_card}
-\title{Deal the top card from a deck}
+\title{Deal one or more cards from a deck of playing cards}
 \usage{
-deal_card(cards = cards_df)
+deal_card(cards = NULL, n_cards = 1)
 }
 \arguments{
-\item{cards}{A two dimensional object with 52 rows and three columns, including all data within a deck of cards;faces, suits and values of each of the 52 cards in a typical deck.}
+\item{cards}{A data frame representing a deck of cards. If not provided, a freshly shuffled deck derived from \code{GambleR::shuffle_cards()} will be used each time the function is called with no \code{cards} object provided.}
+
+\item{n_cards}{The number of cards to deal. Default is 1.}
 }
 \value{
-The top card in the deck will be dealt, providing the face, suite and value of the card.
+A list with two elements:
+\itemize{
+\item \code{dealt}: The card(s) dealt.
+\item \code{remaining_deck}: The updated deck with dealt cards removed.
+}
 }
 \description{
-A function that will deal the top card from the deck or cards dataframe.
+Deals the top card(s) from a given deck, returning both the dealt card(s) and the updated deck.
 }
 \examples{
-dealt_cards <- deal_card(cards = cards_df)
+# Deal a single card from a fresh deck
+dealt_card <- GambleR::deal_card()
+dealt_card <- dealt_card$dealt
+remaining_deck <- dealt_card$remaining_deck
 
-deal_card(cards = cards_df)
+# Deal two cards from an existing deck
+dealt_cards <- GambleR::deal_card(cards = remaining_deck,
+                                  n_cards = 2)
+dealt_cards <- dealt_cards$dealt
+updated_deck <- dealt_cards$remaining_deck
 }
