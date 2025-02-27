@@ -5,6 +5,8 @@
 #' @param cards A data frame representing a deck of cards. If not provided, a freshly shuffled deck derived from `GambleR::shuffle_cards()` will be used each time the function is called with no `cards` object provided.
 #' @param n_cards The number of cards to deal. Default is 1.
 #'
+#' @param verbose A logical input (TRUE or FALSE), to determine whether the function prints the output of the cards. This argument is TRUE by default.
+#'
 #' @return A list with two elements:
 #'   - `dealt`: The card(s) dealt.
 #'   - `remaining_deck`: The updated deck with dealt cards removed.
@@ -23,9 +25,10 @@
 #' dealt_cards <- dealt_cards$dealt
 #' updated_deck <- dealt_cards$remaining_deck
 deal_card <- function(cards = NULL,
-                      n_cards = 1) {
+                      n_cards = 1,
+                      verbose = TRUE) {
 
-  # if no deck is provided, use a freshly shuffled deck output by the shuffle_cards() function
+  # if no deck is provided, use a fresh shuffled deck output by the shuffle_cards() function
   if (is.null(cards)) {
     cards <- GambleR::shuffle_cards()
   }
@@ -44,11 +47,12 @@ deal_card <- function(cards = NULL,
   dealt <- cards[1:n_cards, ]
   remaining_deck <- cards[-(1:n_cards), ]
 
-  # print dealt cards
-  message("\n🃟 Dealt card(s):")
-  print(dealt)
+  # print dealt cards only if verbose = TRUE
+  if (verbose) {
+    message("\n🃟 Dealt card(s):")
+    print(dealt)
+  }
 
   # return both dealt cards and the remaining deck
   return(invisible(list(dealt = dealt, remaining_deck = remaining_deck)))
 }
-
