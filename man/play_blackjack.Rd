@@ -15,13 +15,22 @@ play_blackjack(bet = 10, currency = "£")
 A log of the game, showing the cards drawn and the final outcome.
 }
 \description{
-Step up and face the dealer in Blackjack!
+Blackjack is a classic casino game where the goal is to beat the dealer by getting as close to 21 as possible without going over.
+\subsection{House Rules:}{
+\itemize{
+\item Aces can count as \strong{1 or 11}.
+\item Face cards (Jack, Queen and King) are worth \strong{10}.
+\item You can \strong{stick} (stay with your current hand) or \strong{twist} (hit for another card).
+\item Dealer must \strong{twist on 16 or lower}.
+\item If a players first two cards make \strong{21}, and contain an Ace it's Blackjack! (Automatic win unless dealer also has it, resulting in a draw).
+}
+}
 }
 \examples{
 # Playing it safe with the default £10 stake
-play_blackjack()
+GambleR::play_blackjack()
 
-# Big-dogging it
-play_blackjack(bet = 500,
-               currency = "£")
+# Big-doggin' it
+GambleR::play_blackjack(bet = 500,
+                        currency = "£")
 }

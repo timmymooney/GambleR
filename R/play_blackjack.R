@@ -19,7 +19,8 @@ calculate_hand_value <- function(hand) {
 
 # player_turn ------------------------------------------------------------------
 
-player_turn <- function(deck, hand) {
+player_turn <- function(deck,
+                        hand) {
 
   while (TRUE) {
     message("\nYour current hand:")
@@ -38,52 +39,69 @@ player_turn <- function(deck, hand) {
       new_card <- GambleR::deal_card(deck,
                                      n_cards = 1,
                                      verbose = TRUE)
-      hand <- rbind(hand, new_card$dealt)
+      hand <- rbind(hand,
+                    new_card$dealt)
       deck <- new_card$remaining_deck
 
       # check if the player busted
       if (calculate_hand_value(hand) > 21) {
-        #message("🃏 BUST! You went over 21.")
         break
       }
     } else {
       message("⚠️ Invalid input. Please type 's' to stick or 't' to twist.")
     }
   }
-  return(list(hand = hand, remaining_deck = deck))
+  return(list(hand = hand,
+              remaining_deck = deck))
 }
 
 # dealer_turn ------------------------------------------------------------------
 
-dealer_turn <- function(deck, hand) {
+dealer_turn <- function(deck,
+                        hand,
+                        player_value) {
 
   message("\n🤵 Dealer reveals their second card:")
   print(hand)
 
-  while (calculate_hand_value(hand) < 17) { # need change this, so it's more realistic!🤔
+  while (TRUE) {
+    dealer_value <- calculate_hand_value(hand)
+
+    # dealer busts if going over 21
+    if (dealer_value > 21) {
+      message("❌ Dealer busts! You win automatically.")
+      return(list(hand = hand,
+                  remaining_deck = deck,
+                  dealer_bust = TRUE))
+    }
+
+    # dealer MUST stick at 17+ - official casino rules
+    if (dealer_value >= 17 || dealer_value >= player_value) {
+      message("✅ Dealer sticks.")
+      break
+    }
+
+    # dealer must twist at 16 or lower
     message("🃏 Dealer twists...")
     new_card <- GambleR::deal_card(deck,
                                    n_cards = 1,
                                    verbose = FALSE)
-    hand <- rbind(hand, new_card$dealt)
+    hand <- rbind(hand,
+                  new_card$dealt)
     deck <- new_card$remaining_deck
     message("Dealer's new hand:")
     print(hand)
-
-    # check if dealer busts
-    if (calculate_hand_value(hand) > 21) {
-      message("❌ Dealer busts! You win automatically.")
-      return(list(hand = hand, remaining_deck = deck, dealer_bust = TRUE))  # ensure ealer_bust is always included
-    }
   }
 
-  message("✅ Dealer chose to STICK")
-  return(list(hand = hand, remaining_deck = deck, dealer_bust = FALSE))  # explicitly return dealer_bust = FALSE
+  return(list(hand = hand,
+              remaining_deck = deck,
+              dealer_bust = FALSE))
 }
 
 # determine_winner -------------------------------------------------------------
 
-determine_winner <- function(player_hand, dealer_hand) {
+determine_winner <- function(player_hand,
+                             dealer_hand) {
 
   player_value <- calculate_hand_value(player_hand)
   dealer_value <- calculate_hand_value(dealer_hand)
@@ -109,6 +127,16 @@ determine_winner <- function(player_hand, dealer_hand) {
 
 #' Step up and face the dealer in Blackjack!
 #'
+#' @description
+#' Blackjack is a classic casino game where the goal is to beat the dealer by getting as close to 21 as possible without going over.
+#'
+#' ## House Rules:
+#' - Aces can count as **1 or 11**.
+#' - Face cards (Jack, Queen and King) are worth **10**.
+#' - You can **stick** (stay with your current hand) or **twist** (hit for another card).
+#' - Dealer must **twist on 16 or lower**.
+#' - If a players first two cards make **21**, and contain an Ace it's Blackjack! (Automatic win unless dealer also has it, resulting in a draw).
+#'
 #' @param bet A positive integer representing the amount you're willing to gamble (and probably lose). Default is `10`.
 #' @param currency A string representing the currency the user wishes to play with. Defaults to GBP (`£`), but feel free to flex in dollars, euros, or even Monopoly money.
 #'
@@ -117,15 +145,14 @@ determine_winner <- function(player_hand, dealer_hand) {
 #'
 #' @examples
 #' # Playing it safe with the default £10 stake
-#' play_blackjack()
+#' GambleR::play_blackjack()
 #'
-#' # Big-dogging it
-#' play_blackjack(bet = 500,
-#'                currency = "£")
+#' # Big-doggin' it
+#' GambleR::play_blackjack(bet = 500,
+#'                         currency = "£")
 play_blackjack <- function(bet = 10,
                            currency = "£") {
 
-  # first, set up the game and deal cards
   deck <- GambleR::shuffle_cards()
   player_hand <- GambleR::deal_card(deck,
                                     n_cards = 2,
@@ -138,33 +165,60 @@ play_blackjack <- function(bet = 10,
 
   message("Dealing cards...")
 
-  # show dealer's first card
+  # show dealer's first card only
   message("\n[Dealer's face-up card:]")
   print(dealer_hand$dealt[1, ])
 
-  # player's turn
-  player_result <- player_turn(deck, player_hand$dealt)
+  # calculate initial hand values
+  player_value <- calculate_hand_value(player_hand$dealt)
+  dealer_value <- calculate_hand_value(dealer_hand$dealt)
 
-  # if logic, stating that if the player busts, game ends
-  if (calculate_hand_value(player_result$hand) > 21) {
-    return(paste0("🃏 BUST! You lose: ", currency, bet))
+  # check for Blackjack (Ace + 10-value card)
+  player_blackjack <- (nrow(player_hand$dealt) == 2 &&
+                         player_value == 21 &&
+                         stringr::str_detect(string = player_hand$dealt$face, pattern = "Jack|Queen|King|10"))
+
+  dealer_blackjack <- (nrow(dealer_hand$dealt) == 2 &&
+                         dealer_value == 21 &&
+                         stringr::str_detect(string = dealer_hand$dealt$face, pattern = "Jack|Queen|King|10"))
+
+  # instant win conditions for blackjack
+  if (player_blackjack && dealer_blackjack) {
+    return("😨 Both you and the dealer have Blackjack! It's a draw.")
+  } else if (player_blackjack) {
+    return(paste0("🍾 Blackjack!!! You win ", currency, bet * 2.5))  # Typically pays 3:2
+  } else if (dealer_blackjack) {
+    return(paste0("💔 Dealer has Blackjack, you lose ", currency, bet))
+  }
+
+  # player's turn
+  player_result <- player_turn(deck,
+                               player_hand$dealt)
+  player_value <- calculate_hand_value(player_result$hand)
+
+  # if player busts, game ends immediately
+  if (player_value > 21) {
+    return(paste0("🃏 BUST! You lose ", currency, bet))
   }
 
   # dealer's turn
-  dealer_result <- dealer_turn(deck, dealer_hand$dealt)
+  dealer_result <- dealer_turn(deck,
+                               dealer_hand$dealt,
+                               player_value)
 
   # if dealer busts, player wins
   if (dealer_result$dealer_bust) {
-    return(paste0("🎉 Dealer busts! You win! Prize: ", currency, bet * 2))
+    return(paste0("💸 You win ", currency, bet * 2))
   }
 
-  # now determine the winner
-  winner <- determine_winner(player_result$hand, dealer_result$hand)
+  # determine the winner
+  winner <- determine_winner(player_result$hand,
+                             dealer_result$hand)
 
   if (winner == "player") {
-    return(paste0("🤑 You won: ", currency, bet * 2))
+    return(paste0("🤑 You won ", currency, bet * 2))
   } else if (winner == "dealer") {
-    return(paste0("😔 Dealer wins. You lose: ", currency, bet))
+    return(paste0("😔 Dealer wins. You lose ", currency, bet))
   } else {
     return("🤝 It's a draw.")
   }
