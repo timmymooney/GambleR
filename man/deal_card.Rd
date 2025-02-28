@@ -4,12 +4,14 @@
 \alias{deal_card}
 \title{Deal one or more cards from a deck of playing cards}
 \usage{
-deal_card(cards = NULL, n_cards = 1)
+deal_card(cards = NULL, n_cards = 1, verbose = TRUE)
 }
 \arguments{
 \item{cards}{A data frame representing a deck of cards. If not provided, a freshly shuffled deck derived from \code{GambleR::shuffle_cards()} will be used each time the function is called with no \code{cards} object provided.}
 
 \item{n_cards}{The number of cards to deal. Default is 1.}
+
+\item{verbose}{A logical input (TRUE or FALSE), to determine whether the function prints the output of the cards. This argument is TRUE by default.}
 }
 \value{
 A list with two elements:
