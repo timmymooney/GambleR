@@ -49,8 +49,17 @@ play_roulette <- function(prediction = "Black",
                  "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red")
     )
   } else {
-    stop("invalid roulette type. choose 'european' or 'american'.")
+    stop("✋ Invalid roulette type. choose 'European' or 'American'.")
   }
+
+  # simulate spinning the wheel with a delay
+  cat("No more bets, spinning the wheel...\n")
+  Sys.sleep(1) # delay for 1 second to simulate the wheel starting
+  Sys.sleep(1) # delay for another second
+  cat("Tensions building...\n")
+  Sys.sleep(1) # delay for another second
+  Sys.sleep(1) # delay for another second
+  cat("...\n")
 
   # spin the wheel (randomly select a number)
   outcome <- sample(wheel$number, size = 1)
@@ -58,7 +67,7 @@ play_roulette <- function(prediction = "Black",
   # find the colour of the chosen number
   outcome_colour <- wheel$colour[wheel$number == outcome]
 
-  cat("the wheel landed on:", outcome, "(", outcome_colour, ")\n")
+  cat("The wheel landed on:", outcome, "(", outcome_colour, ")\n")
 
   # calculate and determine winnings based on correct odds
   prize <- 0
@@ -74,6 +83,6 @@ play_roulette <- function(prediction = "Black",
     cat("Congratulations! you won",currency, prize, "🤑")
 
   } else {
-    cat("Oof.. unlucky, try again? 👀")
+    cat("Oof.. unlucky, double down and try again? 👀")
   }
 }
