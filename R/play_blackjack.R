@@ -32,10 +32,12 @@ player_turn <- function(deck,
     action <- readline("▶️ STICK or TWIST? (s/t): ")
 
     if (tolower(action) == "s") {
-      message("🤗 You chose to STICK")
+      cat("🤗 You chose to STICK")
+      Sys.sleep(2)  # delay before dealer acts
       break
     } else if (tolower(action) == "t") {
-      message("👹 You chose to TWIST...")
+      cat("👹 You chose to TWIST...")
+      Sys.sleep(2)  # delay before player acts
       new_card <- GambleR::deal_card(deck,
                                      n_cards = 1,
                                      verbose = TRUE)
@@ -61,7 +63,8 @@ dealer_turn <- function(deck,
                         hand,
                         player_value) {
 
-  message("\n🤵 Dealer reveals their second card:")
+  cat("🤵 Dealer reveals their second card...\n")
+  Sys.sleep(2)  # delay before dealer acts
   print(hand)
 
   while (TRUE) {
@@ -77,12 +80,14 @@ dealer_turn <- function(deck,
 
     # dealer MUST stick at 17+ - official casino rules
     if (dealer_value >= 17 || dealer_value >= player_value) {
-      message("✅ Dealer sticks.")
+      cat("✅ Dealer sticks.")
+      Sys.sleep(2)  # delay before dealers cards are shown
       break
     }
 
     # dealer must twist at 16 or lower
-    message("🃏 Dealer twists...")
+    cat("🃏 Dealer twists...")
+    Sys.sleep(2)  # delay before dealers card is shown
     new_card <- GambleR::deal_card(deck,
                                    n_cards = 1,
                                    verbose = FALSE)
@@ -163,7 +168,8 @@ play_blackjack <- function(bet = 10,
                                     verbose = FALSE)
   deck <- dealer_hand$remaining_deck
 
-  message("Dealing cards...")
+  cat("Dealing cards...")
+  Sys.sleep(2)  # delay before showing dealt cards
 
   # show dealer's first card only
   message("\n[Dealer's face-up card:]")
@@ -223,3 +229,4 @@ play_blackjack <- function(bet = 10,
     return("🤝 It's a draw.")
   }
 }
+

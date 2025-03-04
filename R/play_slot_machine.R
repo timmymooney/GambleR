@@ -39,3 +39,4 @@ play_slot_machine <- function() {
   string <- paste(symbols, prize, sep = "\n£")
   cat(string)
 }
+

@@ -49,17 +49,27 @@ play_roulette <- function(prediction = "Black",
                  "Black", "Red", "Black", "Red", "Black", "Red", "Black", "Red")
     )
   } else {
-    stop("✋ Invalid roulette type. choose 'European' or 'American'.")
+    stop("✋ Invalid roulette type. Choose 'European' or 'American'.")
   }
 
-  # simulate spinning the wheel with a delay
-  cat("No more bets, spinning the wheel...\n")
-  Sys.sleep(1) # delay for 1 second to simulate the wheel starting
-  Sys.sleep(1) # delay for another second
-  cat("Tensions building...\n")
-  Sys.sleep(1) # delay for another second
-  Sys.sleep(1) # delay for another second
-  cat("...\n")
+  # function to simulate spinning wheel animation
+  print_spinner <- function(duration = 3) {
+    frames <- c("◐", "◓", "◑", "◒")  # unicode characters for rotation effect
+
+    cat("🤵 No more bets, spinning the wheel!\n")
+    start_time <- Sys.time()
+
+    while (difftime(Sys.time(), start_time, units = "secs") < duration) {
+      for (frame in frames) {
+        cat("\r", frame, sep = "")
+        Sys.sleep(0.2)  # control speed of rotation
+      }
+    }
+
+  }
+
+  # simulate spinning the wheel
+  print_spinner()
 
   # spin the wheel (randomly select a number)
   outcome <- sample(wheel$number, size = 1)
@@ -67,7 +77,11 @@ play_roulette <- function(prediction = "Black",
   # find the colour of the chosen number
   outcome_colour <- wheel$colour[wheel$number == outcome]
 
-  cat("The wheel landed on:", outcome, "(", outcome_colour, ")\n")
+  # assign color emoji
+  color_emoji <- ifelse(outcome_colour == "Red", "🟥",
+                        ifelse(outcome_colour == "Black", "⬛️", "🟩"))
+
+  cat("\r The wheel landed on:", color_emoji, outcome, "\n")
 
   # calculate and determine winnings based on correct odds
   prize <- 0
@@ -75,14 +89,15 @@ play_roulette <- function(prediction = "Black",
   # green bet (0 or 00) payout is different
   if (prediction == "Green" && outcome_colour == "Green") {
     prize <- ifelse(roulette_type == "American", bet * 19, bet * 35)  # 38:2 for American, 35:1 for European
-    cat("Congratulations! you won",currency, prize, "💸")
+    cat("🎉 Congratulations! You won", currency, prize, "💸\n")
 
     # colour bet (red or black)
   } else if (prediction == outcome_colour) {
     prize <- bet * 2  # 1:1 payout for correct colour bet
-    cat("Congratulations! you won",currency, prize, "🤑")
+    cat("🎉 Congratulations! You won", currency, prize, "🤑\n")
 
   } else {
-    cat("Oof.. unlucky, double down and try again? 👀")
+    cat("😢 Oof.. unlucky, double down and try again? 👀\n")
   }
 }
+

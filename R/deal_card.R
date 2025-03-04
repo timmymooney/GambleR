@@ -56,3 +56,4 @@ deal_card <- function(cards = NULL,
   # return both dealt cards and the remaining deck
   return(invisible(list(dealt = dealt, remaining_deck = remaining_deck)))
 }
+

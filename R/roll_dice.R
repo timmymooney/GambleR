@@ -26,4 +26,3 @@ roll_dice <- function(number_of_die = 1) {
   sum(rolls)
 }
 
-
