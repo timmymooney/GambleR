@@ -32,11 +32,11 @@ player_turn <- function(deck,
     action <- readline("▶️ STICK or TWIST? (s/t): ")
 
     if (tolower(action) == "s") {
-      cat("🤗 You chose to STICK")
+      cat("🤗 You chose to STICK\n")
       Sys.sleep(2)  # delay before dealer acts
       break
     } else if (tolower(action) == "t") {
-      cat("👹 You chose to TWIST...")
+      cat("👹 You chose to TWIST...\n")
       Sys.sleep(2)  # delay before player acts
       new_card <- GambleR::deal_card(deck,
                                      n_cards = 1,
@@ -80,13 +80,13 @@ dealer_turn <- function(deck,
 
     # dealer MUST stick at 17+ - official casino rules
     if (dealer_value >= 17 || dealer_value >= player_value) {
-      cat("✅ Dealer sticks.")
+      cat("✅ Dealer sticks.\n")
       Sys.sleep(2)  # delay before dealers cards are shown
       break
     }
 
     # dealer must twist at 16 or lower
-    cat("🃏 Dealer twists...")
+    cat("🃏 Dealer twists...\n")
     Sys.sleep(2)  # delay before dealers card is shown
     new_card <- GambleR::deal_card(deck,
                                    n_cards = 1,
@@ -111,7 +111,7 @@ determine_winner <- function(player_hand,
   player_value <- calculate_hand_value(player_hand)
   dealer_value <- calculate_hand_value(dealer_hand)
 
-  message("Final Scores:")
+  message("Final Scores:\n")
   message("Your total: ", player_value)
   message("Dealer's total: ", dealer_value)
 
