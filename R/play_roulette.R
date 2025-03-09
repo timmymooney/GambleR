@@ -1,4 +1,4 @@
-#' Spin the wheel at GambleR's roulette table
+#' Spin the wheel at GambleR's roulette table!
 #'
 #' @description Step right up and test your luck at the GambleR roulette table! Will you walk away a legend, or will the house (which always wins) claim yet another victim? This function lets you place a simple bet on Red, Black, or Green—without the risk of re-mortgaging your house, putting it all on Black, and explaining your life choices to your now ex-spouse.
 #'

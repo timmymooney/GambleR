@@ -2,7 +2,7 @@
 % Please edit documentation in R/play_roulette.R
 \name{play_roulette}
 \alias{play_roulette}
-\title{Spin the wheel at GambleR's roulette table}
+\title{Spin the wheel at GambleR's roulette table!}
 \usage{
 play_roulette(prediction = "Black", bet = 10, roulette_type = "European")
 }

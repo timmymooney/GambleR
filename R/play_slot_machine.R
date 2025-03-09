@@ -1,42 +1,56 @@
-#' Test your luck on GambleR's slot machine
+#' Try your luck on GambleR's slot machine! 🎰
 #'
-#' @description A function which requires no arguments, simulating the playing of a slot machine. The wheel is spun and three symbols are produced, along with any prize won. Prizes are won based on the result of the random spin. Three DD's is worth £100, three 7's are worth £80 and so on. For more on scoring and prizes. Refer to https://rstudio-education.github.io/hopr/programs.html
+#' @description
+#' Spin the reels and see if fortune favours you! This function simulates a classic slot machine.
+#' The wheel spins, producing three random symbols, and you win based on the outcome.
 #'
-#' @return The slot machine's wheel will be spun, producing a combination of three symbols as well as the amount won in £ (with any luck). The result of the spin will be printed in the console.
+#' **Winning Rules:**
+#' - **Three Diamonds (💎💎💎)**  ==  **JACKPOT! £100**
+#' - **Two Cherries (🍒🍒)**  ==  **£5**
+#' - **One Cherry (🍒)**  == **£2**
+#' - **Any other combination**  ==  **No win**
+#'
+#' @return
+#' Prints the slot machine's result along with any winnings.
 #'
 #' @export
 #'
 #' @examples
-#' result <- GambleR::slot_machine()
-#' GambleR::slot_machine()
+#' GambleR::play_slot_machine()
 play_slot_machine <- function() {
+  # define slot symbols
+  wheel <- c("💎", "7️⃣", "🎰", "🍒", "🔔", "🍋")
 
-  wheel <- c("DD", "7", "BBB", "BB", "B", "C", "0")
-  symbols <- sample(wheel, size = 3, replace = TRUE,
-                    prob = c(0.03, 0.03, 0.06, 0.1, 0.25, 0.01, 0.52))
+  # start spinning animation
+  cat("Spinning...\n")
 
-  print(symbols)
-
-  same <- symbols[1] == symbols[2] && symbols[2] == symbols[3]
-  bars <- symbols %in% c("B", "BB", "BBB")
-  diamonds <- sum(symbols == "DD")
-
-  if(same) {
-    payouts <- c("DD" = 100, "7" = 80, "BBB" = 40, "BB" = 25,
-                 "B" = 10, "C" = 10, "0" = 0)
-    prize <- unname(payouts[symbols[1]])
-    prize <- prize * 2 ^ diamonds
-  } else if(all(bars)) {
-    prize <- 5
-    prize <- prize * 2 ^ diamonds
-  } else {
-    cherries <- sum(symbols == "C")
-    prize <- c(0, 2, 5)[cherries + 1]
-    prize <- prize * 2 ^ diamonds
+  for (i in 1:10) {
+    # short delay for flicker effect
+    Sys.sleep(0.1)
+    cat("\r", paste(sample(wheel, 3, replace = TRUE), collapse = " "), "    ")
+    # ensures immediate update
+    flush.console()
   }
-  symbols <- attr(prize, "symbols")
-  symbols <- paste(symbols, collapse = " ")
-  string <- paste(symbols, prize, sep = "\n£")
-  cat(string)
+
+  # final outcome
+  symbols <- sample(wheel, size = 3, replace = TRUE)
+
+  # display result
+  cat("\r", paste(symbols, collapse = " "), "\n")
+
+  # check for wins
+  cherries <- sum(symbols == "🍒")
+  diamonds <- sum(symbols == "💎")
+
+  # determine winnings
+  if (diamonds == 3) {
+    cat("Three Diamonds JACKPOT!! You win £100\n")
+  } else if (cherries == 2) {
+    cat("Two cherries, you won £5!\n")
+  } else if (cherries == 1) {
+    cat("One cherry, you won £2!\n")
+  } else {
+    cat("😢 No win this time. Try again!\n")
+  }
 }
 

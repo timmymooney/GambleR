@@ -2,17 +2,25 @@
 % Please edit documentation in R/play_slot_machine.R
 \name{play_slot_machine}
 \alias{play_slot_machine}
-\title{Test your luck on GambleR's slot machine}
+\title{Try your luck on GambleR's slot machine! 🎰}
 \usage{
 play_slot_machine()
 }
 \value{
-The slot machine's wheel will be spun, producing a combination of three symbols as well as the amount won in £ (with any luck). The result of the spin will be printed in the console.
+Prints the slot machine's result along with any winnings.
 }
 \description{
-A function which requires no arguments, simulating the playing of a slot machine. The wheel is spun and three symbols are produced, along with any prize won. Prizes are won based on the result of the random spin. Three DD's is worth £100, three 7's are worth £80 and so on. For more on scoring and prizes. Refer to https://rstudio-education.github.io/hopr/programs.html
+Spin the reels and see if fortune favours you! This function simulates a classic slot machine.
+The wheel spins, producing three random symbols, and you win based on the outcome.
+
+\strong{Winning Rules:}
+\itemize{
+\item \strong{Three Diamonds (💎💎💎)}  ==  \strong{JACKPOT! £100}
+\item \strong{Two Cherries (🍒🍒)}  ==  \strong{£5}
+\item \strong{One Cherry (🍒)}  == \strong{£2}
+\item \strong{Any other combination}  ==  \strong{No win}
+}
 }
 \examples{
-result <- GambleR::slot_machine()
-GambleR::slot_machine()
+GambleR::play_slot_machine()
 }
